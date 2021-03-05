@@ -15,6 +15,17 @@ class ToysContainer extends React.Component{
         whatever: "hello"
     }
 
+    delete = (id) => {
+       
+        this.setState((prevState)=>{
+
+            return {
+                toys: prevState.toys.filter(toy => toy.id !== id)
+            }
+
+        })
+    }
+
     makeToyCards(){
         //utilize STATE
         let displayedToys = this.state.toys
@@ -24,7 +35,7 @@ class ToysContainer extends React.Component{
             toy.name.toLowerCase().includes(this.state.search.toLowerCase()))
         }
 
-        return displayedToys.map(toy => <ToyCard toy={toy} id={toy.id} name={toy.name} image={toy.image} likes={toy.likes} />)
+        return displayedToys.map(toy => <ToyCard toy={toy} id={toy.id} name={toy.name} image={toy.image} likes={toy.likes} delete={this.delete} />)
     }
 
     // componentDidUpdate(){
